@@ -1,3 +1,7 @@
+// Run "npm init" in terminal before any javascript program to save details of metadata of this project
+
+// Run "npm i prompt-sync" in terminam to install prompt-sync module to enable us to get user input
+
 // 1. Deposit some money
 // 2. Determine number of line to bet on
 // 3. Collect a bet amount
@@ -15,7 +19,31 @@
 const prompt = require("prompt-sync")();
 
 const deposit = () => {
-  const depositAmount = prompt("Enter a deposit amount: ");
-};
+  while (true){
+    const depositAmount = prompt("Enter a deposit amount: ");
+    const numberDepositAmount = parseFloat(depositAmount);
 
-deposit()
+    if (isNaN(numberDepositAmount) || numberDepositAmount <= 0) {
+      console.log("Invalid deposit amount, try again.");
+   } else {
+      return numberDepositAmount;
+   }
+  }
+}
+
+const getNumberOfLines = () => {
+  while (true){
+    const lines = prompt("Enter number of lines you wanna bet on(1-3): ");
+    const numberOfLines = parseFloat(lines);
+
+    if (isNaN(numberOfLines) || numberOfLines <= 0 || numberOfLines > 3){
+      console.log("Invalid number of lines, please try again");
+    } else {
+      return numberOfLines
+    }
+  }
+}
+
+const depositAmount = deposit();
+const numberOfLines = getNumberOfLines();
+
